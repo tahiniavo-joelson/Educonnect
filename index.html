@@ -1,53 +1,272 @@
+<!--
+  Fichier: index.html
+  Rôle: Page d'accueil de la plateforme EduConnect Madagascar.
+  Auteur: Tahiniavo Joelson – Étudiant en Mathématiques
+-->
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Educonnect - Espace Numérique de Travail</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f5f5f5;
-        }
-        header {
-            background-color: #2c3e50;
-            color: white;
-            padding: 20px;
-            text-align: center;
-        }
-        main {
-            max-width: 1200px;
-            margin: 20px auto;
-            padding: 20px;
-            background-color: white;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-        h1 {
-            color: #2c3e50;
-            margin-bottom: 10px;
-        }
-        p {
-            color: #555;
-            line-height: 1.6;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EduConnect Madagascar — L'ENT universitaire nouvelle génération</title>
+<meta name="description" content="EduConnect Madagascar : la plateforme collaborative qui réunit étudiants et enseignants pour les cours, devoirs et le suivi pédagogique.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/accueil.css">
+<link rel="stylesheet" href="css/responsive.css">
 </head>
 <body>
-    <header>
-        <h1>🎓 Educonnect</h1>
-        <p>Espace Numérique de Travail</p>
-    </header>
-    
-    <main>
-        <h1>Bienvenue sur Educonnect</h1>
-        <p>Ceci est votre plateforme d'apprentissage collaborative.</p>
-        <p>Commencez à créer votre contenu pédagogique ici!</p>
-    </main>
+
+<header class="site-header">
+  <div class="container">
+    <a href="index.html" class="logo"><span class="logo-mark">E</span> EduConnect</a>
+    <nav class="main-nav">
+      <ul class="nav-links">
+        <li><a href="index.html">Accueil</a></li>
+        <li><a href="cours.html">Cours</a></li>
+        <li><a href="devoir.html">Devoirs</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+      <div class="nav-actions">
+        <div class="js-guest-actions" style="display:flex;gap:.75rem;">
+          <a href="login.html" class="btn btn-ghost">Connexion</a>
+          <a href="register.html" class="btn btn-primary">S'inscrire</a>
+        </div>
+        <div class="js-auth-actions" style="display:none;gap:.75rem;">
+          <a href="dashboard-etudiant.html" class="btn btn-primary">Mon espace</a>
+        </div>
+        <button class="hamburger" aria-label="Ouvrir le menu"><span></span><span></span><span></span></button>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-text">
+        <span class="eyebrow"><i class="fa-solid fa-graduation-cap"></i> Espace Numérique de Travail</span>
+        <h1>Le lien digital entre <span>étudiants</span> et <span>enseignants</span></h1>
+        <p>EduConnect Madagascar réunit vos cours, vos devoirs et vos échanges académiques dans un seul espace clair, rapide et pensé pour l'université d'aujourd'hui.</p>
+        <div class="hero-cta">
+          <a href="register.html" class="btn btn-primary">Créer mon compte <i class="fa-solid fa-arrow-right"></i></a>
+          <a href="cours.html" class="btn btn-outline">Explorer les cours</a>
+        </div>
+        <div class="hero-trust">
+          <div><strong>+120</strong> Cours actifs</div>
+          <div><strong>+40</strong> Enseignants</div>
+          <div><strong>98%</strong> Satisfaction</div>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="hero-blob"></div>
+        <div class="hero-card">
+          <div class="hero-card-header">
+            <img src="https://i.pravatar.cc/100?img=47" alt="Photo de profil étudiante">
+            <div>
+              <strong>Bases de données relationnelles</strong>
+              <span>Prof. Hery Randria</span>
+            </div>
+          </div>
+          <p style="font-size:.85rem;color:var(--color-text-muted);">Devoir "Modèle conceptuel" à rendre dans 3 jours</p>
+          <div class="hero-progress">
+            <span style="font-size:.8rem;color:var(--color-text-muted);">Progression du cours</span>
+            <div class="bar"><span style="width:40%"></span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATISTIQUES -->
+  <section class="stats-section">
+    <div class="container stats-grid">
+      <div class="stat-item"><strong data-count="3200">0</strong><span>Étudiants actifs</span></div>
+      <div class="stat-item"><strong data-count="120">0</strong><span>Cours disponibles</span></div>
+      <div class="stat-item"><strong data-count="45">0</strong><span>Enseignants</span></div>
+      <div class="stat-item"><strong data-count="98" data-suffix="%">0</strong><span>Taux de satisfaction</span></div>
+    </div>
+  </section>
+
+  <!-- PRÉSENTATION -->
+  <section class="section">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">Pourquoi EduConnect</span>
+        <h2>Tout votre parcours académique, au même endroit</h2>
+        <p>Une plateforme pensée pour simplifier la vie des étudiants et des enseignants, du premier cours jusqu'à la remise du dernier devoir.</p>
+      </div>
+      <div class="features-grid">
+        <div class="feature-card reveal">
+          <div class="feature-icon"><i class="fa-solid fa-book-open"></i></div>
+          <h3>Diffusion des cours</h3>
+          <p>Supports de cours organisés par matière, accessibles en un clic, avec suivi de progression.</p>
+        </div>
+        <div class="feature-card reveal">
+          <div class="feature-icon"><i class="fa-solid fa-file-pen"></i></div>
+          <h3>Gestion des devoirs</h3>
+          <p>Soumission de travaux avec dépôt de fichiers, échéances claires et retours des enseignants.</p>
+        </div>
+        <div class="feature-card reveal">
+          <div class="feature-icon"><i class="fa-solid fa-comments"></i></div>
+          <h3>Communication académique</h3>
+          <p>Notifications en temps réel pour ne manquer aucune annonce importante.</p>
+        </div>
+        <div class="feature-card reveal">
+          <div class="feature-icon"><i class="fa-solid fa-shield-halved"></i></div>
+          <h3>Authentification sécurisée</h3>
+          <p>Connexion par rôle (étudiant / enseignant) avec persistance de session.</p>
+        </div>
+        <div class="feature-card reveal">
+          <div class="feature-icon"><i class="fa-solid fa-chart-simple"></i></div>
+          <h3>Suivi pédagogique</h3>
+          <p>Tableaux de bord clairs pour visualiser notes, progression et participation.</p>
+        </div>
+        <div class="feature-card reveal">
+          <div class="feature-icon"><i class="fa-solid fa-mobile-screen"></i></div>
+          <h3>100% responsive</h3>
+          <p>Une expérience fluide sur ordinateur, tablette et smartphone.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TÉMOIGNAGES -->
+  <section class="section testimonials-section">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">Témoignages</span>
+        <h2>Ce que dit la communauté EduConnect</h2>
+      </div>
+      <div class="testimonials-grid">
+        <div class="testimonial-card reveal">
+          <div class="testimonial-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+          <p>"Je ne perds plus mes échéances de devoirs, tout est centralisé et clair."</p>
+          <div class="testimonial-author">
+            <img src="https://i.pravatar.cc/80?img=32" alt="Photo de Nirina R.">
+            <div><strong>Nirina R.</strong><span>Étudiante en Informatique</span></div>
+          </div>
+        </div>
+        <div class="testimonial-card reveal">
+          <div class="testimonial-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+          <p>"Publier un cours et suivre les soumissions prend désormais quelques minutes."</p>
+          <div class="testimonial-author">
+            <img src="https://i.pravatar.cc/80?img=12" alt="Photo du Professeur Hery Randria">
+            <div><strong>Prof. Hery Randria</strong><span>Enseignant, Informatique</span></div>
+          </div>
+        </div>
+        <div class="testimonial-card reveal">
+          <div class="testimonial-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i></div>
+          <p>"Interface simple, rapide, et vraiment adaptée à notre université."</p>
+          <div class="testimonial-author">
+            <img src="https://i.pravatar.cc/80?img=25" alt="Photo de Tojo M.">
+            <div><strong>Tojo M.</strong><span>Étudiant en Mathématiques</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ACTUALITÉS -->
+  <section class="section">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">Actualités</span>
+        <h2>Les dernières nouvelles de la plateforme</h2>
+      </div>
+      <div class="news-grid">
+        <article class="news-card reveal">
+          <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=600" alt="Salle de conférence universitaire">
+          <div class="news-card-body">
+            <span class="news-date">12 juillet 2026</span>
+            <h3>Ouverture des inscriptions du second semestre</h3>
+            <p>Les inscriptions aux nouveaux cours sont désormais ouvertes sur la plateforme.</p>
+          </div>
+        </article>
+        <article class="news-card reveal">
+          <img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?w=600" alt="Étudiants travaillant en groupe">
+          <div class="news-card-body">
+            <span class="news-date">05 juillet 2026</span>
+            <h3>Nouvel espace de notifications</h3>
+            <p>Retrouvez toutes vos annonces académiques centralisées dans un espace dédié.</p>
+          </div>
+        </article>
+        <article class="news-card reveal">
+          <img src="https://images.unsplash.com/photo-1580582932707-520aed937b7b?w=600" alt="Enseignant devant un tableau">
+          <div class="news-card-body">
+            <span class="news-date">28 juin 2026</span>
+            <h3>Amélioration des tableaux de bord enseignants</h3>
+            <p>Statistiques de participation et gestion des soumissions repensées.</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section">
+    <div class="cta-banner">
+      <h2>Prêt à rejoindre EduConnect Madagascar ?</h2>
+      <p>Créez votre compte gratuitement en moins de deux minutes.</p>
+      <a href="register.html" class="btn btn-primary">Commencer maintenant</a>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="logo" style="color:#fff;"><span class="logo-mark">E</span> EduConnect</div>
+        <p style="margin-top:1rem;">La plateforme numérique de travail conçue pour les universités malgaches.</p>
+        <div class="social-icons" style="margin-top:1.2rem;">
+          <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+          <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+          <a href="#" aria-label="Twitter"><i class="fa-brands fa-x-twitter"></i></a>
+        </div>
+      </div>
+      <div>
+        <h4>Plateforme</h4>
+        <ul>
+          <li><a href="cours.html">Cours</a></li>
+          <li><a href="devoir.html">Devoirs</a></li>
+          <li><a href="login.html">Connexion</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Ressources</h4>
+        <ul>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="#">Aide</a></li>
+          <li><a href="#">FAQ</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="mailto:contact@educonnect.mg">contact@educonnect.mg</a></li>
+          <li><a href="tel:+261340000000">+261 34 00 000 00</a></li>
+          <li>Fianarantsoa, Madagascar</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 EduConnect Madagascar. Tous droits réservés.</span>
+      <div class="social-icons"></div>
+    </div>
+  </div>
+</footer>
+
+<div id="toast-container"></div>
+
+<script src="js/storage.js"></script>
+<script src="js/validation.js"></script>
+<script src="js/notifications.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/main.js"></script>
 </body>
 </html>
