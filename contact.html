@@ -1,0 +1,105 @@
+<!--
+  Fichier: contact.html
+  Rôle: Page de contact de la plateforme EduConnect Madagascar.
+  Auteur: Tahiniavo Joelson – Étudiant en Mathématiques
+-->
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact — EduConnect Madagascar</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container">
+    <a href="index.html" class="logo"><span class="logo-mark">E</span> EduConnect</a>
+    <nav class="main-nav">
+      <ul class="nav-links">
+        <li><a href="index.html">Accueil</a></li>
+        <li><a href="cours.html">Cours</a></li>
+        <li><a href="devoir.html">Devoirs</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+      <div class="nav-actions">
+        <div class="js-guest-actions" style="display:flex;gap:.75rem;">
+          <a href="login.html" class="btn btn-ghost">Connexion</a>
+          <a href="register.html" class="btn btn-primary">S'inscrire</a>
+        </div>
+        <div class="js-auth-actions" style="display:none;gap:.75rem;">
+          <a href="dashboard-etudiant.html" class="btn btn-primary">Mon espace</a>
+        </div>
+        <button class="hamburger" aria-label="Ouvrir le menu"><span></span><span></span><span></span></button>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="section" style="padding-top:150px;">
+    <div class="container" style="display:grid;grid-template-columns:1fr 1fr;gap:var(--space-4);align-items:start;max-width:1000px;">
+      <div>
+        <span class="eyebrow">Contact</span>
+        <h1 style="font-size:2rem;margin:.6rem 0 1rem;">Une question ? Écrivez-nous</h1>
+        <p style="color:var(--color-text-muted);margin-bottom:var(--space-3);">Notre équipe pédagogique et technique vous répond sous 48 heures ouvrées.</p>
+
+        <div class="card" style="margin-bottom:1rem;display:flex;gap:1rem;align-items:center;">
+          <div class="feature-icon"><i class="fa-solid fa-envelope"></i></div>
+          <div><strong>Email</strong><p style="color:var(--color-text-muted);font-size:.9rem;">contact@educonnect.mg</p></div>
+        </div>
+        <div class="card" style="margin-bottom:1rem;display:flex;gap:1rem;align-items:center;">
+          <div class="feature-icon"><i class="fa-solid fa-phone"></i></div>
+          <div><strong>Téléphone</strong><p style="color:var(--color-text-muted);font-size:.9rem;">+261 34 00 000 00</p></div>
+        </div>
+        <div class="card" style="display:flex;gap:1rem;align-items:center;">
+          <div class="feature-icon"><i class="fa-solid fa-location-dot"></i></div>
+          <div><strong>Adresse</strong><p style="color:var(--color-text-muted);font-size:.9rem;">Fianarantsoa, Madagascar</p></div>
+        </div>
+      </div>
+
+      <form id="contact-form" class="card">
+        <div class="field">
+          <label for="contact-nom">Nom complet</label>
+          <input type="text" id="contact-nom" required>
+        </div>
+        <div class="field">
+          <label for="contact-email">Adresse email</label>
+          <input type="email" id="contact-email" required>
+        </div>
+        <div class="field">
+          <label for="contact-sujet">Sujet</label>
+          <select id="contact-sujet">
+            <option>Question générale</option>
+            <option>Assistance technique</option>
+            <option>Partenariat universitaire</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="contact-message">Message</label>
+          <textarea id="contact-message" rows="4" required></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary btn-block">Envoyer le message</button>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-bottom"><span>&copy; 2026 EduConnect Madagascar. Tous droits réservés.</span></div>
+  </div>
+</footer>
+
+<div id="toast-container"></div>
+
+<script src="js/storage.js"></script>
+<script src="js/validation.js"></script>
+<script src="js/notifications.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>

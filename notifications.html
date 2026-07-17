@@ -1,0 +1,113 @@
+<!--
+  Fichier: notifications.html
+  Rôle: Centre de notifications de l'utilisateur connecté.
+  Auteur: Tahiniavo Joelson – Étudiant en Mathématiques
+-->
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Notifications — EduConnect Madagascar</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/dashboard.css">
+<link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container">
+    <a href="index.html" class="logo"><span class="logo-mark">E</span> EduConnect</a>
+    <nav class="main-nav">
+      <ul class="nav-links">
+        <li><a href="index.html">Accueil</a></li>
+        <li><a href="cours.html">Cours</a></li>
+        <li><a href="devoir.html">Devoirs</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+      <div class="nav-actions">
+        <div class="js-auth-actions" style="display:flex;gap:.75rem;">
+          <a href="#" class="js-logout btn btn-outline">Déconnexion</a>
+        </div>
+        <button class="hamburger" aria-label="Ouvrir le menu"><span></span><span></span><span></span></button>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<main class="container" style="padding:130px 0 var(--space-5);max-width:760px;">
+  <div class="dash-panel-head" style="margin-bottom:var(--space-3);">
+    <div>
+      <h1 style="font-size:1.6rem;">Notifications</h1>
+      <p style="color:var(--color-text-muted);">Retrouvez toutes vos annonces académiques.</p>
+    </div>
+    <button class="btn btn-outline btn-sm" id="mark-all-read">Tout marquer comme lu</button>
+  </div>
+
+  <div id="notifications-list"></div>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-bottom"><span>&copy; 2026 EduConnect Madagascar. Tous droits réservés.</span></div>
+  </div>
+</footer>
+
+<div id="toast-container"></div>
+
+<script src="js/storage.js"></script>
+<script src="js/validation.js"></script>
+<script src="js/notifications.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/main.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    Auth.requireAuth();
+    const user = Auth.currentUser();
+    const listEl = document.getElementById('notifications-list');
+
+    const ICONS = { devoir: 'fa-file-pen', note: 'fa-chart-line', rappel: 'fa-clock' };
+
+    function render() {
+      const notifications = DB.getAll(DB.KEYS.NOTIFICATIONS)
+        .filter(n => n.destinataireId === user.id)
+        .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+
+      if (!notifications.length) {
+        listEl.innerHTML = `
+          <div class="empty-state">
+            <i class="fa-solid fa-bell-slash"></i>
+            <h3>Aucune notification</h3>
+            <p>Vous êtes à jour !</p>
+          </div>`;
+        return;
+      }
+
+      listEl.innerHTML = notifications.map(n => `
+        <div class="dash-panel" style="display:flex;gap:1rem;align-items:flex-start;${n.lue ? 'opacity:.65;' : ''}">
+          <div class="list-row-icon" style="flex-shrink:0;"><i class="fa-solid ${ICONS[n.type] || 'fa-bell'}"></i></div>
+          <div style="flex:1;">
+            <div style="display:flex;justify-content:space-between;gap:1rem;">
+              <strong>${n.titre}</strong>
+              ${!n.lue ? '<span class="badge badge-primary">Nouveau</span>' : ''}
+            </div>
+            <p style="color:var(--color-text-muted);font-size:.9rem;margin-top:.3rem;">${n.message}</p>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    document.getElementById('mark-all-read').addEventListener('click', () => {
+      Notify.markAllRead(user.id);
+      Notify.refreshBell(user.id);
+      render();
+      Notify.toast('Notifications lues', '', 'success');
+    });
+
+    render();
+    Notify.refreshBell(user.id);
+  });
+</script>
+</body>
+</html>

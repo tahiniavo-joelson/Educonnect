@@ -1,0 +1,90 @@
+<!--
+  Fichier: cours.html
+  Rôle: Page de consultation des cours — recherche, filtres, pagination.
+  Auteur: Tahiniavo Joelson – Étudiant en Mathématiques
+-->
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cours — EduConnect Madagascar</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/cours.css">
+<link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container">
+    <a href="index.html" class="logo"><span class="logo-mark">E</span> EduConnect</a>
+    <nav class="main-nav">
+      <ul class="nav-links">
+        <li><a href="index.html">Accueil</a></li>
+        <li><a href="cours.html">Cours</a></li>
+        <li><a href="devoir.html">Devoirs</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+      <div class="nav-actions">
+        <div class="js-guest-actions" style="display:flex;gap:.75rem;">
+          <a href="login.html" class="btn btn-ghost">Connexion</a>
+          <a href="register.html" class="btn btn-primary">S'inscrire</a>
+        </div>
+        <div class="js-auth-actions" style="display:none;gap:.75rem;">
+          <a href="dashboard-etudiant.html" class="btn btn-primary">Mon espace</a>
+        </div>
+        <button class="hamburger" aria-label="Ouvrir le menu"><span></span><span></span><span></span></button>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="page-hero">
+    <div class="container">
+      <h1>Catalogue des cours</h1>
+      <p>Parcourez les cours disponibles, filtrez par matière et accédez à leurs supports.</p>
+    </div>
+  </section>
+
+  <section class="container">
+    <div class="toolbar">
+      <div class="search-box">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <input type="search" id="course-search" placeholder="Rechercher un cours, un enseignant...">
+      </div>
+      <select id="subject-filter" class="filter-select" aria-label="Filtrer par matière"></select>
+    </div>
+    <p id="courses-count" class="courses-count"></p>
+    <div id="courses-grid" class="courses-grid"></div>
+    <div id="pagination" class="pagination"></div>
+  </section>
+</main>
+
+<!-- Modale "voir le cours" -->
+<div class="modal-overlay" id="course-modal">
+  <div class="modal">
+    <button class="modal-close" aria-label="Fermer"><i class="fa-solid fa-xmark"></i></button>
+    <div class="modal-body"></div>
+  </div>
+</div>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-bottom">
+      <span>&copy; 2026 EduConnect Madagascar. Tous droits réservés.</span>
+    </div>
+  </div>
+</footer>
+
+<div id="toast-container"></div>
+
+<script src="js/storage.js"></script>
+<script src="js/validation.js"></script>
+<script src="js/notifications.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/main.js"></script>
+<script src="js/cours.js"></script>
+</body>
+</html>

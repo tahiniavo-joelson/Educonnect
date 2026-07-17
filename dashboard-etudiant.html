@@ -1,0 +1,144 @@
+<!--
+  Fichier: dashboard-etudiant.html
+  Rôle: Tableau de bord de l'étudiant — cours, devoirs, notes,
+        notifications, calendrier, progression.
+  Auteur: Tahiniavo Joelson – Étudiant en Mathématiques
+-->
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tableau de bord étudiant — EduConnect Madagascar</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/dashboard.css">
+<link rel="stylesheet" href="css/responsive.css">
+</head>
+<body data-page="dashboard-etudiant">
+
+<div class="dash-shell">
+  <aside class="dash-sidebar">
+    <a href="index.html" class="logo"><span class="logo-mark">E</span> <span>EduConnect</span></a>
+    <nav class="dash-nav">
+      <a href="dashboard-etudiant.html" class="active"><i class="fa-solid fa-gauge"></i> <span>Tableau de bord</span></a>
+      <a href="cours.html"><i class="fa-solid fa-book-open"></i> <span>Mes cours</span></a>
+      <a href="devoir.html"><i class="fa-solid fa-file-pen"></i> <span>Devoirs</span></a>
+      <a href="notifications.html"><i class="fa-solid fa-bell"></i> <span>Notifications</span></a>
+      <a href="profil.html"><i class="fa-solid fa-user"></i> <span>Profil</span></a>
+      <a href="#" class="js-logout"><i class="fa-solid fa-right-from-bracket"></i> <span>Déconnexion</span></a>
+    </nav>
+    <div class="dash-sidebar-footer">
+      <div class="dash-user">
+        <img class="js-user-avatar" src="" alt="Photo de profil">
+        <div><strong class="js-user-name"></strong><span class="js-user-role"></span></div>
+      </div>
+    </div>
+  </aside>
+
+  <main class="dash-main">
+    <div class="dash-topbar">
+      <div>
+        <h1>Bonjour, <span class="js-user-name"></span> 👋</h1>
+        <p>Voici un aperçu de votre parcours académique aujourd'hui.</p>
+      </div>
+      <div class="dash-topbar-actions">
+        <a href="notifications.html" class="bell-btn"><i class="fa-solid fa-bell"></i><span class="dot"></span></a>
+        <img class="js-user-avatar" src="" alt="Photo de profil" style="width:42px;height:42px;border-radius:50%;object-fit:cover;">
+      </div>
+    </div>
+
+    <div class="widgets-grid">
+      <div class="widget-kpi">
+        <div class="kpi-icon" style="background:var(--color-primary-light);color:var(--color-primary);"><i class="fa-solid fa-book"></i></div>
+        <strong id="kpi-courses">0</strong>
+        <span>Cours suivis</span>
+      </div>
+      <div class="widget-kpi">
+        <div class="kpi-icon" style="background:#FEE2E2;color:var(--color-error);"><i class="fa-solid fa-file-pen"></i></div>
+        <strong id="kpi-pending">0</strong>
+        <span>Devoirs à rendre</span>
+      </div>
+      <div class="widget-kpi">
+        <div class="kpi-icon" style="background:#D1FAE5;color:var(--color-success);"><i class="fa-solid fa-chart-line"></i></div>
+        <strong id="kpi-avg">—</strong>
+        <span>Moyenne générale</span>
+      </div>
+      <div class="widget-kpi">
+        <div class="kpi-icon" style="background:#FEF3C7;color:#B45309;"><i class="fa-solid fa-bell"></i></div>
+        <strong id="kpi-notifications">0</strong>
+        <span>Notifications non lues</span>
+      </div>
+    </div>
+
+    <div class="dash-columns">
+      <div>
+        <div class="dash-panel">
+          <div class="dash-panel-head">
+            <h2>Mes cours</h2>
+            <a href="cours.html">Voir tout</a>
+          </div>
+          <div id="my-courses-list"></div>
+        </div>
+
+        <div class="dash-panel">
+          <div class="dash-panel-head">
+            <h2>Devoirs à rendre</h2>
+            <a href="devoir.html">Soumettre</a>
+          </div>
+          <div id="due-assignments-list"></div>
+        </div>
+
+        <div class="dash-panel">
+          <div class="dash-panel-head"><h2>Dernières notes</h2></div>
+          <table class="data-table">
+            <thead><tr><th>Matière</th><th>Devoir</th><th>Note</th></tr></thead>
+            <tbody id="grades-table-body"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <div>
+        <div class="dash-panel">
+          <div class="dash-panel-head"><h2>Calendrier académique</h2></div>
+          <div class="mini-calendar">
+            <div class="cal-label">L</div><div class="cal-label">M</div><div class="cal-label">M</div><div class="cal-label">J</div><div class="cal-label">V</div><div class="cal-label">S</div><div class="cal-label">D</div>
+          </div>
+          <div class="mini-calendar" id="mini-calendar-days" style="margin-top:.4rem;"></div>
+        </div>
+
+        <div class="dash-panel">
+          <div class="dash-panel-head"><h2>Progression des cours</h2></div>
+          <div class="progress-row">
+            <div class="progress-row-head"><span>Algorithmique</span><span>62%</span></div>
+            <div class="progress-bar"><span style="width:62%"></span></div>
+          </div>
+          <div class="progress-row">
+            <div class="progress-row-head"><span>Bases de données</span><span>40%</span></div>
+            <div class="progress-bar"><span style="width:40%"></span></div>
+          </div>
+          <div class="progress-row">
+            <div class="progress-row-head"><span>Développement Web</span><span>78%</span></div>
+            <div class="progress-bar"><span style="width:78%"></span></div>
+          </div>
+        </div>
+
+        <div class="dash-panel">
+          <div class="dash-panel-head"><h2>Notifications</h2></div>
+          <div id="recent-notifications-list"></div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+
+<div id="toast-container"></div>
+
+<script src="js/storage.js"></script>
+<script src="js/validation.js"></script>
+<script src="js/notifications.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/main.js"></script>
+<script src="js/dashboard.js"></script>
+</body>
+</html>

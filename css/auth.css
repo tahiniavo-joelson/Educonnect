@@ -1,0 +1,49 @@
+/*
+  Fichier: css/auth.css
+  Rôle: Styles des pages d'authentification (login.html, register.html).
+  Auteur: Tahiniavo Joelson – Étudiant en Mathématiques
+*/
+
+.auth-shell{
+  min-height:100vh;display:grid;grid-template-columns:1fr 1fr;
+}
+.auth-visual{
+  background:linear-gradient(150deg,var(--color-primary),#1D4ED8 70%);
+  color:#fff;padding:var(--space-5) var(--space-4);
+  display:flex;flex-direction:column;justify-content:space-between;position:relative;overflow:hidden;
+}
+.auth-visual .logo{color:#fff;}
+.auth-visual .logo-mark{background:rgba(255,255,255,.18);}
+.auth-quote{max-width:420px;}
+.auth-quote h2{color:#fff;font-size:1.7rem;margin-bottom:var(--space-2);}
+.auth-quote p{color:rgba(255,255,255,.85);}
+.auth-visual .deco{position:absolute;width:280px;height:280px;border-radius:50%;background:rgba(255,255,255,.08);bottom:-100px;right:-80px;}
+
+.auth-form-side{display:flex;align-items:center;justify-content:center;padding:var(--space-4);}
+.auth-box{width:100%;max-width:420px;}
+.auth-box .back-home{display:inline-flex;align-items:center;gap:.4rem;color:var(--color-text-muted);font-size:.85rem;margin-bottom:var(--space-3);}
+.auth-box h1{font-size:1.7rem;margin-bottom:.4rem;}
+.auth-box > p{color:var(--color-text-muted);margin-bottom:var(--space-3);}
+
+.role-toggle{display:grid;grid-template-columns:1fr 1fr;gap:.7rem;margin-bottom:var(--space-2);}
+.role-toggle label{
+  border:1.5px solid var(--color-border);border-radius:var(--radius-sm);padding:.8rem;text-align:center;
+  font-size:.85rem;font-weight:600;color:var(--color-text-muted);cursor:pointer;transition:all .2s var(--ease);
+}
+.role-toggle input{display:none;}
+.role-toggle input:checked + label{border-color:var(--color-primary);background:var(--color-primary-light);color:var(--color-primary-dark);}
+
+.password-field{position:relative;}
+.password-toggle{position:absolute;right:14px;top:38px;color:var(--color-text-muted);}
+
+.auth-divider{display:flex;align-items:center;gap:.8rem;margin:var(--space-3) 0;color:var(--color-text-muted);font-size:.8rem;}
+.auth-divider::before,.auth-divider::after{content:"";flex:1;height:1px;background:var(--color-border);}
+
+.auth-footer-link{text-align:center;font-size:.9rem;color:var(--color-text-muted);margin-top:var(--space-2);}
+.auth-footer-link a{color:var(--color-primary);font-weight:700;}
+
+.strength-meter{display:flex;gap:.3rem;margin-top:.4rem;}
+.strength-meter span{height:4px;flex:1;background:var(--color-border);border-radius:999px;}
+.strength-meter.weak span:nth-child(1){background:var(--color-error);}
+.strength-meter.medium span:nth-child(-n+2){background:#F59E0B;}
+.strength-meter.strong span{background:var(--color-success);}

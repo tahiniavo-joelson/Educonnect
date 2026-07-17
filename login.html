@@ -1,0 +1,130 @@
+<!--
+  Fichier: login.html
+  Rôle: Page de connexion des utilisateurs (étudiants et enseignants).
+  Auteur: Tahiniavo Joelson – Étudiant en Mathématiques
+-->
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Connexion — EduConnect Madagascar</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/auth.css">
+<link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+<div class="auth-shell">
+  <div class="auth-visual">
+    <a href="index.html" class="logo"><span class="logo-mark">E</span> EduConnect</a>
+    <div class="auth-quote">
+      <h2>"Une seule plateforme pour tout mon parcours universitaire."</h2>
+      <p>Rejoignez des milliers d'étudiants et d'enseignants qui utilisent déjà EduConnect Madagascar au quotidien.</p>
+    </div>
+    <div class="deco"></div>
+  </div>
+
+  <div class="auth-form-side">
+    <div class="auth-box">
+      <a href="index.html" class="back-home"><i class="fa-solid fa-arrow-left"></i> Retour à l'accueil</a>
+      <h1>Bon retour parmi nous</h1>
+      <p>Connectez-vous pour accéder à votre espace numérique de travail.</p>
+
+      <form id="login-form" novalidate>
+        <div class="field" id="field-email">
+          <label for="email">Adresse email</label>
+          <input type="email" id="email" placeholder="vous@educonnect.mg">
+          <span class="error-msg"></span>
+        </div>
+
+        <div class="field password-field" id="field-password">
+          <label for="password">Mot de passe</label>
+          <input type="password" id="password" placeholder="••••••••">
+          <button type="button" class="password-toggle" id="toggle-password" aria-label="Afficher le mot de passe"><i class="fa-solid fa-eye"></i></button>
+          <span class="error-msg"></span>
+        </div>
+
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1.5rem;">
+          <label class="checkbox-row">
+            <input type="checkbox" id="remember"> Se souvenir de moi
+          </label>
+          <a href="#" style="font-size:.85rem;color:var(--color-primary);font-weight:600;">Mot de passe oublié ?</a>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-block" id="login-submit">Se connecter</button>
+      </form>
+
+      <div class="auth-divider">Comptes de démonstration</div>
+      <p style="font-size:.8rem;color:var(--color-text-muted);line-height:1.7;">
+        Étudiant : etudiant@educonnect.mg / Etudiant123<br>
+        Enseignant : enseignant@educonnect.mg / Enseignant123
+      </p>
+
+      <p class="auth-footer-link">Pas encore de compte ? <a href="register.html">Créer un compte</a></p>
+    </div>
+  </div>
+</div>
+
+<div id="toast-container"></div>
+
+<script src="js/storage.js"></script>
+<script src="js/validation.js"></script>
+<script src="js/notifications.js"></script>
+<script src="js/auth.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    if (Auth.isLoggedIn()) Auth.redirectToDashboard();
+
+    const togglePwd = document.getElementById('toggle-password');
+    const pwdInput = document.getElementById('password');
+    togglePwd.addEventListener('click', () => {
+      const isPwd = pwdInput.type === 'password';
+      pwdInput.type = isPwd ? 'text' : 'password';
+      togglePwd.innerHTML = isPwd ? '<i class="fa-solid fa-eye-slash"></i>' : '<i class="fa-solid fa-eye"></i>';
+    });
+
+    const rememberedEmail = localStorage.getItem('edu_remember');
+    if (rememberedEmail) {
+      document.getElementById('email').value = rememberedEmail;
+      document.getElementById('remember').checked = true;
+    }
+
+    const form = document.getElementById('login-form');
+    const submitBtn = document.getElementById('login-submit');
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const emailField = document.getElementById('field-email');
+      const passwordField = document.getElementById('field-password');
+      Validation.clearFieldError(emailField);
+      Validation.clearFieldError(passwordField);
+
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+      let valid = true;
+
+      if (!Validation.isEmail(email)) { Validation.setFieldError(emailField, 'Adresse email invalide.'); valid = false; }
+      if (!Validation.isRequired(password)) { Validation.setFieldError(passwordField, 'Le mot de passe est requis.'); valid = false; }
+      if (!valid) return;
+
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = '<span class="spinner"></span> Connexion...';
+
+      setTimeout(() => {
+        const result = Auth.login(email, password, document.getElementById('remember').checked);
+        if (!result.ok) {
+          Notify.toast('Connexion échouée', result.error, 'error');
+          submitBtn.disabled = false;
+          submitBtn.textContent = 'Se connecter';
+          return;
+        }
+        Notify.toast('Connexion réussie', `Bienvenue, ${result.user.nom} !`, 'success');
+        setTimeout(() => Auth.redirectToDashboard(), 800);
+      }, 500);
+    });
+  });
+</script>
+</body>
+</html>

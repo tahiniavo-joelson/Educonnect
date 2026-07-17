@@ -1,0 +1,153 @@
+<!--
+  Fichier: register.html
+  Rôle: Page d'inscription des nouveaux utilisateurs (étudiant ou enseignant).
+  Auteur: Tahiniavo Joelson – Étudiant en Mathématiques
+-->
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Inscription — EduConnect Madagascar</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/auth.css">
+<link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+<div class="auth-shell">
+  <div class="auth-visual">
+    <a href="index.html" class="logo"><span class="logo-mark">E</span> EduConnect</a>
+    <div class="auth-quote">
+      <h2>"En deux minutes, mon compte était prêt."</h2>
+      <p>Créez votre compte et accédez immédiatement à votre tableau de bord personnalisé.</p>
+    </div>
+    <div class="deco"></div>
+  </div>
+
+  <div class="auth-form-side">
+    <div class="auth-box">
+      <a href="index.html" class="back-home"><i class="fa-solid fa-arrow-left"></i> Retour à l'accueil</a>
+      <h1>Créer votre compte</h1>
+      <p>Rejoignez EduConnect Madagascar en quelques instants.</p>
+
+      <form id="register-form" novalidate>
+        <div class="field">
+          <label>Vous êtes</label>
+          <div class="role-toggle">
+            <input type="radio" name="role" id="role-etudiant" value="etudiant" checked>
+            <label for="role-etudiant"><i class="fa-solid fa-user-graduate"></i> Étudiant</label>
+            <input type="radio" name="role" id="role-enseignant" value="enseignant">
+            <label for="role-enseignant"><i class="fa-solid fa-chalkboard-user"></i> Enseignant</label>
+          </div>
+        </div>
+
+        <div class="field" id="field-nom">
+          <label for="nom">Nom complet</label>
+          <input type="text" id="nom" placeholder="Rasoanaivo Fanja">
+          <span class="error-msg"></span>
+        </div>
+
+        <div class="form-row">
+          <div class="field" id="field-email">
+            <label for="email">Adresse email</label>
+            <input type="email" id="email" placeholder="vous@educonnect.mg">
+            <span class="error-msg"></span>
+          </div>
+          <div class="field" id="field-telephone">
+            <label for="telephone">Téléphone</label>
+            <input type="tel" id="telephone" placeholder="034 12 345 67">
+            <span class="error-msg"></span>
+          </div>
+        </div>
+
+        <div class="field password-field" id="field-password">
+          <label for="password">Mot de passe</label>
+          <input type="password" id="password" placeholder="8 caractères minimum">
+          <span class="error-msg"></span>
+          <div class="strength-meter" id="strength-meter"><span></span><span></span><span></span><span></span></div>
+        </div>
+
+        <div class="field password-field" id="field-confirm">
+          <label for="confirm-password">Confirmer le mot de passe</label>
+          <input type="password" id="confirm-password" placeholder="Ressaisissez le mot de passe">
+          <span class="error-msg"></span>
+        </div>
+
+        <label class="checkbox-row" style="margin-bottom:1.5rem;">
+          <input type="checkbox" id="terms"> J'accepte les conditions d'utilisation d'EduConnect
+        </label>
+
+        <button type="submit" class="btn btn-primary btn-block" id="register-submit">Créer mon compte</button>
+      </form>
+
+      <p class="auth-footer-link">Déjà inscrit ? <a href="login.html">Se connecter</a></p>
+    </div>
+  </div>
+</div>
+
+<div id="toast-container"></div>
+
+<script src="js/storage.js"></script>
+<script src="js/validation.js"></script>
+<script src="js/notifications.js"></script>
+<script src="js/auth.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    if (Auth.isLoggedIn()) Auth.redirectToDashboard();
+
+    const pwdInput = document.getElementById('password');
+    const meter = document.getElementById('strength-meter');
+    pwdInput.addEventListener('input', () => {
+      const strength = Validation.passwordStrength(pwdInput.value);
+      meter.className = 'strength-meter ' + strength;
+    });
+
+    const form = document.getElementById('register-form');
+    const submitBtn = document.getElementById('register-submit');
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      const fields = ['field-nom', 'field-email', 'field-telephone', 'field-password', 'field-confirm'].map(id => document.getElementById(id));
+      fields.forEach(f => Validation.clearFieldError(f));
+
+      const nom = document.getElementById('nom').value;
+      const email = document.getElementById('email').value;
+      const telephone = document.getElementById('telephone').value;
+      const password = document.getElementById('password').value;
+      const confirm = document.getElementById('confirm-password').value;
+      const role = document.querySelector('input[name="role"]:checked').value;
+
+      let valid = true;
+      if (!Validation.minLength(nom, 3)) { Validation.setFieldError(document.getElementById('field-nom'), 'Entrez votre nom complet.'); valid = false; }
+      if (!Validation.isEmail(email)) { Validation.setFieldError(document.getElementById('field-email'), 'Adresse email invalide.'); valid = false; }
+      if (!Validation.isPhone(telephone)) { Validation.setFieldError(document.getElementById('field-telephone'), 'Numéro de téléphone invalide.'); valid = false; }
+      if (!Validation.minLength(password, 8)) { Validation.setFieldError(document.getElementById('field-password'), 'Le mot de passe doit contenir au moins 8 caractères.'); valid = false; }
+      if (password !== confirm) { Validation.setFieldError(document.getElementById('field-confirm'), 'Les mots de passe ne correspondent pas.'); valid = false; }
+      if (!document.getElementById('terms').checked) {
+        Notify.toast('Conditions non acceptées', 'Veuillez accepter les conditions d\'utilisation.', 'error');
+        valid = false;
+      }
+      if (!valid) return;
+
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = '<span class="spinner"></span> Création...';
+
+      setTimeout(() => {
+        const result = Auth.register({ nom, email, telephone, role, motdepasse: password });
+        if (!result.ok) {
+          Notify.toast('Inscription échouée', result.error, 'error');
+          submitBtn.disabled = false;
+          submitBtn.textContent = 'Créer mon compte';
+          return;
+        }
+        Notify.toast('Compte créé', `Bienvenue sur EduConnect, ${result.user.nom} !`, 'success');
+        setTimeout(() => Auth.redirectToDashboard(), 800);
+      }, 500);
+    });
+  });
+</script>
+</body>
+</html>

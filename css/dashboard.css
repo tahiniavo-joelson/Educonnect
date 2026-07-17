@@ -1,0 +1,71 @@
+/*
+  Fichier: css/dashboard.css
+  Rôle: Styles des tableaux de bord (dashboard-etudiant.html, dashboard-enseignant.html).
+  Auteur: Tahiniavo Joelson – Étudiant en Mathématiques
+*/
+
+.dash-shell{display:grid;grid-template-columns:260px 1fr;min-height:100vh;}
+
+.dash-sidebar{
+  background:var(--color-gray-dark);color:#D1D5DB;padding:var(--space-3);
+  position:sticky;top:0;height:100vh;display:flex;flex-direction:column;gap:var(--space-3);
+}
+.dash-sidebar .logo{color:#fff;margin-bottom:var(--space-2);}
+.dash-sidebar .logo-mark{background:rgba(255,255,255,.15);}
+.dash-nav a{
+  display:flex;align-items:center;gap:.75rem;padding:.7rem .9rem;border-radius:var(--radius-sm);
+  font-size:.9rem;font-weight:600;color:#9CA3AF;margin-bottom:.3rem;transition:all .2s var(--ease);
+}
+.dash-nav a i{width:18px;text-align:center;}
+.dash-nav a:hover{background:rgba(255,255,255,.06);color:#fff;}
+.dash-nav a.active{background:var(--color-primary);color:#fff;}
+.dash-sidebar-footer{margin-top:auto;padding-top:var(--space-2);border-top:1px solid rgba(255,255,255,.1);}
+.dash-user{display:flex;align-items:center;gap:.7rem;font-size:.85rem;}
+.dash-user img{width:38px;height:38px;border-radius:50%;object-fit:cover;}
+.dash-user strong{display:block;color:#fff;font-size:.85rem;}
+.dash-user span{font-size:.75rem;color:#9CA3AF;}
+
+.dash-main{padding:var(--space-3) var(--space-4);background:var(--color-bg-alt);min-height:100vh;}
+.dash-topbar{display:flex;justify-content:space-between;align-items:center;margin-bottom:var(--space-3);flex-wrap:wrap;gap:1rem;}
+.dash-topbar h1{font-size:1.5rem;}
+.dash-topbar p{color:var(--color-text-muted);font-size:.9rem;}
+.dash-topbar-actions{display:flex;align-items:center;gap:1rem;}
+.bell-btn{position:relative;width:42px;height:42px;border-radius:50%;background:#fff;border:1px solid var(--color-border);display:flex;align-items:center;justify-content:center;color:var(--color-text-muted);}
+.bell-btn .dot{position:absolute;top:8px;right:9px;width:8px;height:8px;background:var(--color-error);border-radius:50%;}
+
+.widgets-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--space-3);margin-bottom:var(--space-3);}
+.widget-kpi{background:#fff;border-radius:var(--radius-md);padding:var(--space-3);border:1px solid var(--color-border);}
+.widget-kpi .kpi-icon{width:44px;height:44px;border-radius:var(--radius-sm);display:flex;align-items:center;justify-content:center;margin-bottom:.8rem;font-size:1.1rem;}
+.widget-kpi strong{display:block;font-family:var(--font-display);font-size:1.6rem;}
+.widget-kpi span{color:var(--color-text-muted);font-size:.82rem;}
+
+.dash-columns{display:grid;grid-template-columns:1.4fr 1fr;gap:var(--space-3);}
+.dash-panel{background:#fff;border-radius:var(--radius-md);border:1px solid var(--color-border);padding:var(--space-3);margin-bottom:var(--space-3);}
+.dash-panel-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:var(--space-2);}
+.dash-panel-head h2{font-size:1.05rem;}
+.dash-panel-head a{font-size:.82rem;color:var(--color-primary);font-weight:700;}
+
+.list-row{display:flex;align-items:center;gap:.8rem;padding:.75rem 0;border-bottom:1px solid var(--color-border);}
+.list-row:last-child{border-bottom:none;}
+.list-row-icon{width:38px;height:38px;border-radius:var(--radius-sm);background:var(--color-primary-light);color:var(--color-primary);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.list-row-info{flex:1;min-width:0;}
+.list-row-info strong{display:block;font-size:.88rem;}
+.list-row-info span{font-size:.78rem;color:var(--color-text-muted);}
+
+.progress-row{margin-bottom:var(--space-2);}
+.progress-row-head{display:flex;justify-content:space-between;font-size:.85rem;margin-bottom:.4rem;}
+.progress-bar{height:8px;background:var(--color-gray-light);border-radius:999px;overflow:hidden;}
+.progress-bar span{display:block;height:100%;background:var(--color-primary);border-radius:999px;}
+
+.mini-calendar{display:grid;grid-template-columns:repeat(7,1fr);gap:.35rem;text-align:center;font-size:.78rem;}
+.mini-calendar .cal-label{color:var(--color-text-muted);font-weight:700;}
+.mini-calendar .cal-day{padding:.4rem 0;border-radius:6px;color:var(--color-text);}
+.mini-calendar .cal-day.today{background:var(--color-primary);color:#fff;font-weight:700;}
+.mini-calendar .cal-day.has-event{border:1.5px solid var(--color-primary);font-weight:700;}
+
+table.data-table{width:100%;border-collapse:collapse;font-size:.88rem;}
+table.data-table th{text-align:left;padding:.7rem .5rem;color:var(--color-text-muted);font-size:.78rem;text-transform:uppercase;letter-spacing:.03em;border-bottom:1.5px solid var(--color-border);}
+table.data-table td{padding:.8rem .5rem;border-bottom:1px solid var(--color-border);}
+table.data-table tr:last-child td{border-bottom:none;}
+
+.form-inline-panel{background:#fff;border-radius:var(--radius-md);border:1px solid var(--color-border);padding:var(--space-3);}

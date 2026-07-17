@@ -1,0 +1,134 @@
+<!--
+  Fichier: devoir.html
+  Rôle: Page de soumission d'un devoir avec formulaire complet et validation.
+  Auteur: Tahiniavo Joelson – Étudiant en Mathématiques
+-->
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Soumettre un devoir — EduConnect Madagascar</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/devoir.css">
+<link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container">
+    <a href="index.html" class="logo"><span class="logo-mark">E</span> EduConnect</a>
+    <nav class="main-nav">
+      <ul class="nav-links">
+        <li><a href="index.html">Accueil</a></li>
+        <li><a href="cours.html">Cours</a></li>
+        <li><a href="devoir.html">Devoirs</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+      <div class="nav-actions">
+        <div class="js-guest-actions" style="display:flex;gap:.75rem;">
+          <a href="login.html" class="btn btn-ghost">Connexion</a>
+          <a href="register.html" class="btn btn-primary">S'inscrire</a>
+        </div>
+        <div class="js-auth-actions" style="display:none;gap:.75rem;">
+          <a href="dashboard-etudiant.html" class="btn btn-primary">Mon espace</a>
+        </div>
+        <button class="hamburger" aria-label="Ouvrir le menu"><span></span><span></span><span></span></button>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<main class="container devoir-layout">
+  <div class="form-panel">
+    <h1>Soumettre un devoir</h1>
+    <p>Complétez le formulaire ci-dessous et joignez votre fichier avant la date limite.</p>
+
+    <form id="devoir-form" novalidate>
+      <div class="form-row">
+        <div class="field" id="field-titre">
+          <label for="titre-devoir">Titre du devoir</label>
+          <input type="text" id="titre-devoir" name="titre" placeholder="Ex: TP Structures de données">
+          <span class="error-msg"></span>
+        </div>
+        <div class="field" id="field-matiere">
+          <label for="matiere-devoir">Matière</label>
+          <select id="matiere-devoir" name="matiere">
+            <option value="">Choisir une matière</option>
+            <option value="Informatique">Informatique</option>
+            <option value="Mathématiques">Mathématiques</option>
+            <option value="Langues">Langues</option>
+            <option value="Physique">Physique</option>
+          </select>
+          <span class="error-msg"></span>
+        </div>
+      </div>
+
+      <div class="field" id="field-description">
+        <label for="description-devoir">Description</label>
+        <textarea id="description-devoir" name="description" rows="3" placeholder="Décrivez brièvement le devoir..."></textarea>
+        <span class="error-msg"></span>
+      </div>
+
+      <div class="field" id="field-date">
+        <label for="date-limite">Date limite</label>
+        <input type="date" id="date-limite" name="dateLimite">
+        <span class="error-msg"></span>
+      </div>
+
+      <div class="field">
+        <label>Fichier à joindre</label>
+        <div class="dropzone" id="dropzone">
+          <i class="fa-solid fa-cloud-arrow-up"></i>
+          <p><strong>Cliquez pour téléverser</strong> ou glissez-déposez votre fichier ici</p>
+          <span class="hint">PDF, DOCX, ZIP jusqu'à 20 Mo</span>
+        </div>
+        <input type="file" id="fichier-devoir" style="display:none;">
+        <div id="file-preview" class="file-preview" style="display:none;"></div>
+      </div>
+
+      <div class="field">
+        <label for="commentaire">Commentaire (optionnel)</label>
+        <textarea id="commentaire" rows="2" maxlength="500" placeholder="Un mot pour votre enseignant..."></textarea>
+        <div id="char-count" class="char-count">0 / 500</div>
+      </div>
+
+      <button type="submit" class="btn btn-primary btn-block">Soumettre le devoir <i class="fa-solid fa-paper-plane"></i></button>
+    </form>
+  </div>
+
+  <aside>
+    <div class="deadline-panel">
+      <h3><i class="fa-solid fa-clock"></i> Devoirs à rendre</h3>
+      <div id="assignment-sidebar-list"></div>
+    </div>
+    <div class="sidebar-tips">
+      <h3>Conseils avant de soumettre</h3>
+      <ul>
+        <li><i class="fa-solid fa-circle-check"></i> Vérifiez le format demandé par votre enseignant.</li>
+        <li><i class="fa-solid fa-circle-check"></i> Relisez votre travail avant l'envoi.</li>
+        <li><i class="fa-solid fa-circle-check"></i> Soumettez au moins un jour avant l'échéance.</li>
+      </ul>
+    </div>
+  </aside>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-bottom">
+      <span>&copy; 2026 EduConnect Madagascar. Tous droits réservés.</span>
+    </div>
+  </div>
+</footer>
+
+<div id="toast-container"></div>
+
+<script src="js/storage.js"></script>
+<script src="js/validation.js"></script>
+<script src="js/notifications.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/main.js"></script>
+<script src="js/devoir.js"></script>
+</body>
+</html>

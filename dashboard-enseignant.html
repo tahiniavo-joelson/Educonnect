@@ -1,0 +1,166 @@
+<!--
+  Fichier: dashboard-enseignant.html
+  Rôle: Tableau de bord de l'enseignant — publication de cours et devoirs,
+        suivi des soumissions, gestion des étudiants, statistiques.
+  Auteur: Tahiniavo Joelson – Étudiant en Mathématiques
+-->
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tableau de bord enseignant — EduConnect Madagascar</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/dashboard.css">
+<link rel="stylesheet" href="css/responsive.css">
+</head>
+<body data-page="dashboard-enseignant">
+
+<div class="dash-shell">
+  <aside class="dash-sidebar">
+    <a href="index.html" class="logo"><span class="logo-mark">E</span> <span>EduConnect</span></a>
+    <nav class="dash-nav">
+      <a href="dashboard-enseignant.html" class="active"><i class="fa-solid fa-gauge"></i> <span>Tableau de bord</span></a>
+      <a href="cours.html"><i class="fa-solid fa-chalkboard"></i> <span>Mes cours</span></a>
+      <a href="notifications.html"><i class="fa-solid fa-bell"></i> <span>Notifications</span></a>
+      <a href="profil.html"><i class="fa-solid fa-user"></i> <span>Profil</span></a>
+      <a href="#" class="js-logout"><i class="fa-solid fa-right-from-bracket"></i> <span>Déconnexion</span></a>
+    </nav>
+    <div class="dash-sidebar-footer">
+      <div class="dash-user">
+        <img class="js-user-avatar" src="" alt="Photo de profil">
+        <div><strong class="js-user-name"></strong><span class="js-user-role"></span></div>
+      </div>
+    </div>
+  </aside>
+
+  <main class="dash-main">
+    <div class="dash-topbar">
+      <div>
+        <h1>Bonjour, <span class="js-user-name"></span> 👋</h1>
+        <p>Gérez vos cours, devoirs et suivez la participation de vos étudiants.</p>
+      </div>
+      <div class="dash-topbar-actions">
+        <a href="notifications.html" class="bell-btn"><i class="fa-solid fa-bell"></i><span class="dot"></span></a>
+        <img class="js-user-avatar" src="" alt="Photo de profil" style="width:42px;height:42px;border-radius:50%;object-fit:cover;">
+      </div>
+    </div>
+
+    <div class="widgets-grid">
+      <div class="widget-kpi">
+        <div class="kpi-icon" style="background:var(--color-primary-light);color:var(--color-primary);"><i class="fa-solid fa-chalkboard"></i></div>
+        <strong id="kpi-courses">0</strong>
+        <span>Cours publiés</span>
+      </div>
+      <div class="widget-kpi">
+        <div class="kpi-icon" style="background:#D1FAE5;color:var(--color-success);"><i class="fa-solid fa-user-graduate"></i></div>
+        <strong id="kpi-students">0</strong>
+        <span>Étudiants</span>
+      </div>
+      <div class="widget-kpi">
+        <div class="kpi-icon" style="background:#FEF3C7;color:#B45309;"><i class="fa-solid fa-inbox"></i></div>
+        <strong id="kpi-submissions">0</strong>
+        <span>Soumissions reçues</span>
+      </div>
+      <div class="widget-kpi">
+        <div class="kpi-icon" style="background:#FEE2E2;color:var(--color-error);"><i class="fa-solid fa-bell"></i></div>
+        <strong id="kpi-notifications">0</strong>
+        <span>Notifications</span>
+      </div>
+    </div>
+
+    <div class="dash-columns">
+      <div>
+        <div class="dash-panel">
+          <div class="dash-panel-head"><h2>Publier un cours</h2></div>
+          <form id="publish-course-form">
+            <div class="form-row">
+              <div class="field">
+                <label for="nouveau-cours-titre">Titre du cours</label>
+                <input type="text" id="nouveau-cours-titre" placeholder="Ex: Systèmes d'exploitation">
+              </div>
+              <div class="field">
+                <label for="nouveau-cours-matiere">Matière</label>
+                <input type="text" id="nouveau-cours-matiere" placeholder="Ex: Informatique">
+              </div>
+            </div>
+            <div class="field">
+              <label for="nouveau-cours-description">Description</label>
+              <textarea id="nouveau-cours-description" rows="2" placeholder="Décrivez le contenu du cours..."></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Publier le cours</button>
+          </form>
+        </div>
+
+        <div class="dash-panel">
+          <div class="dash-panel-head"><h2>Ajouter un devoir</h2></div>
+          <form id="publish-assignment-form">
+            <div class="form-row">
+              <div class="field">
+                <label for="nouveau-devoir-titre">Titre du devoir</label>
+                <input type="text" id="nouveau-devoir-titre" placeholder="Ex: Exercice de synthèse">
+              </div>
+              <div class="field">
+                <label for="nouveau-devoir-matiere">Matière</label>
+                <input type="text" id="nouveau-devoir-matiere" placeholder="Ex: Mathématiques">
+              </div>
+            </div>
+            <div class="field">
+              <label for="nouveau-devoir-date">Date limite</label>
+              <input type="date" id="nouveau-devoir-date">
+            </div>
+            <button type="submit" class="btn btn-primary">Assigner à tous les étudiants</button>
+          </form>
+        </div>
+
+        <div class="dash-panel">
+          <div class="dash-panel-head"><h2>Soumissions reçues</h2></div>
+          <table class="data-table">
+            <thead><tr><th>Étudiant</th><th>Devoir</th><th>Matière</th><th>Statut</th></tr></thead>
+            <tbody id="submissions-table-body"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <div>
+        <div class="dash-panel">
+          <div class="dash-panel-head"><h2>Mes cours publiés</h2></div>
+          <div id="teacher-courses-list"></div>
+        </div>
+
+        <div class="dash-panel">
+          <div class="dash-panel-head"><h2>Étudiants</h2></div>
+          <div id="students-list"></div>
+        </div>
+
+        <div class="dash-panel">
+          <div class="dash-panel-head"><h2>Statistiques de participation</h2></div>
+          <div class="progress-row">
+            <div class="progress-row-head"><span>Assiduité moyenne</span><span>87%</span></div>
+            <div class="progress-bar"><span style="width:87%"></span></div>
+          </div>
+          <div class="progress-row">
+            <div class="progress-row-head"><span>Taux de rendu des devoirs</span><span>74%</span></div>
+            <div class="progress-bar"><span style="width:74%"></span></div>
+          </div>
+          <div class="progress-row">
+            <div class="progress-row-head"><span>Engagement en cours</span><span>65%</span></div>
+            <div class="progress-bar"><span style="width:65%"></span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+
+<div id="toast-container"></div>
+
+<script src="js/storage.js"></script>
+<script src="js/validation.js"></script>
+<script src="js/notifications.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/main.js"></script>
+<script src="js/dashboard.js"></script>
+</body>
+</html>

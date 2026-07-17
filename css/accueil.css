@@ -1,0 +1,84 @@
+/*
+  Fichier: css/accueil.css
+  Rôle: Styles spécifiques à la page d'accueil (index.html)
+        — hero, statistiques, témoignages, actualités.
+  Auteur: Tahiniavo Joelson – Étudiant en Mathématiques
+*/
+
+/* ============ HERO ============ */
+.hero{
+  padding:150px 0 var(--space-5);
+  background:linear-gradient(180deg,var(--color-primary-light) 0%,#fff 65%);
+  position:relative;overflow:hidden;
+}
+.hero .container{display:grid;grid-template-columns:1.1fr .9fr;gap:var(--space-4);align-items:center;}
+.hero-text .eyebrow{background:#fff;padding:.4rem .9rem;border-radius:999px;box-shadow:var(--shadow-sm);}
+.hero-text h1{font-size:clamp(2.1rem,4.5vw,3.4rem);margin:.8rem 0 1rem;}
+.hero-text h1 span{color:var(--color-primary);}
+.hero-text p{color:var(--color-text-muted);font-size:1.05rem;max-width:520px;margin-bottom:var(--space-3);}
+.hero-cta{display:flex;gap:1rem;flex-wrap:wrap;margin-bottom:var(--space-3);}
+.hero-trust{display:flex;gap:var(--space-3);color:var(--color-text-muted);font-size:.85rem;}
+.hero-trust strong{color:var(--color-gray-dark);display:block;font-family:var(--font-display);font-size:1.1rem;}
+
+.hero-visual{position:relative;}
+.hero-card{
+  background:#fff;border-radius:var(--radius-lg);box-shadow:var(--shadow-lg);
+  padding:var(--space-3);position:relative;z-index:2;
+  animation:float 5s ease-in-out infinite;
+}
+@keyframes float{0%,100%{transform:translateY(0);}50%{transform:translateY(-12px);}}
+.hero-card-header{display:flex;align-items:center;gap:.7rem;margin-bottom:var(--space-2);}
+.hero-card-header img{width:44px;height:44px;border-radius:50%;object-fit:cover;}
+.hero-card-header strong{display:block;font-size:.9rem;}
+.hero-card-header span{font-size:.78rem;color:var(--color-text-muted);}
+.hero-progress{margin-top:.9rem;}
+.hero-progress .bar{height:8px;background:var(--color-gray-light);border-radius:999px;overflow:hidden;margin-top:.4rem;}
+.hero-progress .bar span{display:block;height:100%;background:linear-gradient(90deg,var(--color-primary),#60A5FA);border-radius:999px;}
+.hero-blob{position:absolute;width:340px;height:340px;background:radial-gradient(circle,rgba(37,99,235,.18),transparent 70%);top:-40px;right:-60px;z-index:1;}
+
+/* ============ STATISTIQUES ============ */
+.stats-section{background:var(--color-gray-dark);padding:var(--space-4) 0;}
+.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--space-3);text-align:center;}
+.stat-item strong{display:block;font-family:var(--font-display);font-size:2.2rem;color:#fff;}
+.stat-item span{color:#9CA3AF;font-size:.9rem;}
+
+/* ============ PRÉSENTATION / ATOUTS ============ */
+.features-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--space-3);}
+.feature-card{padding:var(--space-3);border-radius:var(--radius-md);border:1px solid var(--color-border);background:#fff;}
+.feature-icon{
+  width:52px;height:52px;border-radius:var(--radius-sm);background:var(--color-primary-light);
+  display:flex;align-items:center;justify-content:center;color:var(--color-primary);font-size:1.3rem;margin-bottom:var(--space-2);
+}
+.feature-card h3{font-size:1.05rem;margin-bottom:.4rem;}
+.feature-card p{color:var(--color-text-muted);font-size:.92rem;}
+
+/* ============ TÉMOIGNAGES ============ */
+.testimonials-section{background:var(--color-bg-alt);}
+.testimonials-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--space-3);}
+.testimonial-card{background:#fff;padding:var(--space-3);border-radius:var(--radius-md);box-shadow:var(--shadow-sm);}
+.testimonial-stars{color:#F59E0B;margin-bottom:.6rem;font-size:.85rem;}
+.testimonial-card p{font-size:.92rem;color:var(--color-text);margin-bottom:var(--space-2);}
+.testimonial-author{display:flex;align-items:center;gap:.7rem;}
+.testimonial-author img{width:42px;height:42px;border-radius:50%;object-fit:cover;}
+.testimonial-author strong{display:block;font-size:.88rem;}
+.testimonial-author span{font-size:.78rem;color:var(--color-text-muted);}
+
+/* ============ ACTUALITÉS ============ */
+.news-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--space-3);}
+.news-card{border-radius:var(--radius-md);overflow:hidden;border:1px solid var(--color-border);background:#fff;}
+.news-card img{height:170px;width:100%;object-fit:cover;}
+.news-card-body{padding:var(--space-2);}
+.news-date{font-size:.78rem;color:var(--color-primary);font-weight:700;margin-bottom:.4rem;display:block;}
+.news-card h3{font-size:1rem;margin-bottom:.4rem;}
+.news-card p{font-size:.85rem;color:var(--color-text-muted);}
+
+/* ============ CTA FINAL ============ */
+.cta-banner{
+  background:linear-gradient(120deg,var(--color-primary),#1D4ED8);
+  border-radius:var(--radius-lg);padding:var(--space-4);text-align:center;color:#fff;
+  margin:0 auto;max-width:1180px;
+}
+.cta-banner h2{color:#fff;margin-bottom:.6rem;}
+.cta-banner p{color:rgba(255,255,255,.85);margin-bottom:var(--space-3);}
+.cta-banner .btn-primary{background:#fff;color:var(--color-primary);}
+.cta-banner .btn-primary:hover{background:var(--color-gray-light);}

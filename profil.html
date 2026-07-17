@@ -1,0 +1,213 @@
+<!--
+  Fichier: profil.html
+  Rôle: Page de profil utilisateur — informations personnelles,
+        sécurité et préférences de notifications.
+  Auteur: Tahiniavo Joelson – Étudiant en Mathématiques
+-->
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mon profil — EduConnect Madagascar</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/profil.css">
+<link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container">
+    <a href="index.html" class="logo"><span class="logo-mark">E</span> EduConnect</a>
+    <nav class="main-nav">
+      <ul class="nav-links">
+        <li><a href="index.html">Accueil</a></li>
+        <li><a href="cours.html">Cours</a></li>
+        <li><a href="devoir.html">Devoirs</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+      <div class="nav-actions">
+        <div class="js-guest-actions" style="display:flex;gap:.75rem;">
+          <a href="login.html" class="btn btn-ghost">Connexion</a>
+          <a href="register.html" class="btn btn-primary">S'inscrire</a>
+        </div>
+        <div class="js-auth-actions" style="display:none;gap:.75rem;">
+          <a href="#" class="js-logout btn btn-outline">Déconnexion</a>
+        </div>
+        <button class="hamburger" aria-label="Ouvrir le menu"><span></span><span></span><span></span></button>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="profil-hero">
+    <div class="container">
+      <div class="profil-card">
+        <div class="profil-avatar-wrap">
+          <img class="profil-avatar js-user-avatar" src="" alt="Photo de profil">
+          <button class="avatar-edit-btn" aria-label="Changer la photo"><i class="fa-solid fa-camera"></i></button>
+        </div>
+        <div class="profil-info">
+          <h1 class="js-user-name"></h1>
+          <p class="js-user-email"></p>
+          <div class="profil-tags">
+            <span class="badge badge-primary js-user-role"></span>
+            <span class="badge badge-success">Compte actif</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="profil-tabs">
+        <button class="active" data-tab="infos">Informations</button>
+        <button data-tab="securite">Sécurité</button>
+        <button data-tab="preferences">Préférences</button>
+      </div>
+
+      <div class="profil-tab-panel active" id="tab-infos">
+        <div class="settings-card">
+          <h3>Informations personnelles</h3>
+          <div class="settings-grid">
+            <div class="field">
+              <label for="profil-nom">Nom complet</label>
+              <input type="text" id="profil-nom">
+            </div>
+            <div class="field">
+              <label for="profil-email">Adresse email</label>
+              <input type="email" id="profil-email">
+            </div>
+            <div class="field">
+              <label for="profil-telephone">Téléphone</label>
+              <input type="tel" id="profil-telephone">
+            </div>
+            <div class="field">
+              <label for="profil-role">Rôle</label>
+              <input type="text" id="profil-role" disabled>
+            </div>
+          </div>
+          <button class="btn btn-primary" id="save-profile-btn">Enregistrer les modifications</button>
+        </div>
+      </div>
+
+      <div class="profil-tab-panel" id="tab-securite">
+        <div class="settings-card">
+          <h3>Changer le mot de passe</h3>
+          <div class="field">
+            <label for="current-password">Mot de passe actuel</label>
+            <input type="password" id="current-password">
+          </div>
+          <div class="settings-grid">
+            <div class="field">
+              <label for="new-password">Nouveau mot de passe</label>
+              <input type="password" id="new-password">
+            </div>
+            <div class="field">
+              <label for="confirm-new-password">Confirmer le mot de passe</label>
+              <input type="password" id="confirm-new-password">
+            </div>
+          </div>
+          <button class="btn btn-primary" id="save-password-btn">Mettre à jour le mot de passe</button>
+        </div>
+      </div>
+
+      <div class="profil-tab-panel" id="tab-preferences">
+        <div class="settings-card">
+          <h3>Préférences de notifications</h3>
+          <div class="pref-row">
+            <div><strong>Nouveaux devoirs</strong><span>Recevoir une notification pour chaque nouveau devoir</span></div>
+            <label class="switch"><input type="checkbox" checked><span class="slider"></span></label>
+          </div>
+          <div class="pref-row">
+            <div><strong>Notes publiées</strong><span>Être averti dès qu'une note est disponible</span></div>
+            <label class="switch"><input type="checkbox" checked><span class="slider"></span></label>
+          </div>
+          <div class="pref-row">
+            <div><strong>Rappels d'échéance</strong><span>Rappel 48h avant la date limite d'un devoir</span></div>
+            <label class="switch"><input type="checkbox" checked><span class="slider"></span></label>
+          </div>
+          <div class="pref-row">
+            <div><strong>Actualités de la plateforme</strong><span>Annonces générales d'EduConnect</span></div>
+            <label class="switch"><input type="checkbox"><span class="slider"></span></label>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-bottom"><span>&copy; 2026 EduConnect Madagascar. Tous droits réservés.</span></div>
+  </div>
+</footer>
+
+<div id="toast-container"></div>
+
+<script src="js/storage.js"></script>
+<script src="js/validation.js"></script>
+<script src="js/notifications.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/main.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    Auth.requireAuth();
+    const user = Auth.currentUser();
+
+    document.getElementById('profil-nom').value = user.nom;
+    document.getElementById('profil-email').value = user.email;
+    document.getElementById('profil-telephone').value = user.telephone || '';
+    document.getElementById('profil-role').value = user.role === 'enseignant' ? 'Enseignant' : 'Étudiant';
+
+    document.querySelectorAll('.profil-tabs button').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.profil-tabs button').forEach(b => b.classList.remove('active'));
+        document.querySelectorAll('.profil-tab-panel').forEach(p => p.classList.remove('active'));
+        btn.classList.add('active');
+        document.getElementById('tab-' + btn.dataset.tab).classList.add('active');
+      });
+    });
+
+    document.getElementById('save-profile-btn').addEventListener('click', () => {
+      const nom = document.getElementById('profil-nom').value.trim();
+      const email = document.getElementById('profil-email').value.trim();
+      const telephone = document.getElementById('profil-telephone').value.trim();
+      if (!Validation.minLength(nom, 3) || !Validation.isEmail(email)) {
+        Notify.toast('Champs invalides', 'Vérifiez votre nom et votre email.', 'error');
+        return;
+      }
+      const updated = DB.update(DB.KEYS.USERS, user.id, { nom, email, telephone });
+      const { motdepasse, ...safeUser } = updated;
+      DB.setSession(safeUser);
+      Notify.toast('Profil mis à jour', 'Vos informations ont été enregistrées.', 'success');
+      Auth.injectUserWidgets();
+    });
+
+    document.getElementById('save-password-btn').addEventListener('click', () => {
+      const current = document.getElementById('current-password').value;
+      const next = document.getElementById('new-password').value;
+      const confirm = document.getElementById('confirm-new-password').value;
+      const fullUser = DB.findById(DB.KEYS.USERS, user.id);
+
+      if (fullUser.motdepasse !== current) {
+        Notify.toast('Mot de passe incorrect', 'Le mot de passe actuel ne correspond pas.', 'error');
+        return;
+      }
+      if (!Validation.minLength(next, 8)) {
+        Notify.toast('Mot de passe trop court', 'Le nouveau mot de passe doit contenir au moins 8 caractères.', 'error');
+        return;
+      }
+      if (next !== confirm) {
+        Notify.toast('Erreur', 'La confirmation ne correspond pas.', 'error');
+        return;
+      }
+      DB.update(DB.KEYS.USERS, user.id, { motdepasse: next });
+      Notify.toast('Mot de passe modifié', '', 'success');
+      document.getElementById('current-password').value = '';
+      document.getElementById('new-password').value = '';
+      document.getElementById('confirm-new-password').value = '';
+    });
+  });
+</script>
+</body>
+</html>
